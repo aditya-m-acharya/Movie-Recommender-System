@@ -1,0 +1,4 @@
+data_ingestion:
+  movies_data: "data/movies.dat" 
+  users_data: "data/users.dat"
+  ratings_data: "data/ratings.dat"
