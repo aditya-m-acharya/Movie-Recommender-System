@@ -12,3 +12,15 @@ class DataIngestion:
         users = pd.read_fwf(users_data, encoding='ISO-8859-1')
         ratings = pd.read_fwf(ratings_data, encoding='ISO-8859-1')
         return movies, users, ratings
+    
+    def data_cleaning(movies, users, ratings):
+        movies.drop(columns=['Unnamed: 1', 'Unnamed: 2'], axis=1, inplace=True)
+        delimiter = '::'
+        movies = movies['Movie ID::Title::Genres'].str.split(delimiter, expand=True)
+        movies.columns = ['Movie ID', 'Title', 'Genres']
+        movies.rename(columns={'Movie ID':'MovieID'}, inplace=True)
+        ratings = ratings['UserID::MovieID::Rating::Timestamp'].str.split(delimiter, expand=True)
+        ratings.columns = ['UserID', 'MovieID', 'Rating', 'Timestamp']
+        users = users['UserID::Gender::Age::Occupation::Zip-code'].str.split(delimiter, expand=True)
+        users.columns = ['UserID', 'Gender', 'Age', 'Occupation', 'Zip-code']
+        return movies, users, ratings

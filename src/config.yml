@@ -2,3 +2,6 @@ data_ingestion:
   movies_data: "data/movies.dat" 
   users_data: "data/users.dat"
   ratings_data: "data/ratings.dat"
+
+model_trainer:
+  model_path: "model/rec_model.pkl"
